@@ -71,12 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        // Allow access to Swagger UI
-        http.authorizeRequests()
-                .antMatchers("/v2/api-docs", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
+
 
         http.addFilterBefore(jwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
     }
