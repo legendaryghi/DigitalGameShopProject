@@ -58,11 +58,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new JwtTokenProvider();
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                // Configure your endpoint security here
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/**").authenticated()
@@ -70,6 +70,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Allow access to Swagger UI
+        http.authorizeRequests()
+                .antMatchers("/v2/api-docs", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
 
         http.addFilterBefore(jwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
     }
