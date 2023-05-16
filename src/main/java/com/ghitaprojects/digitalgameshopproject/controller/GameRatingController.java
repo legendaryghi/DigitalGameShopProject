@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/game-ratings")
+@RequestMapping("/game-ratings")
 public class GameRatingController {
 
     private final GameRatingService gameRatingService;

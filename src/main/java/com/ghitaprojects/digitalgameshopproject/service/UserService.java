@@ -30,6 +30,7 @@ public class UserService {
     }
 
     public User findById(int id) {
+
         return userRepository.findById(id).orElse(null);
     }
 
@@ -51,6 +52,7 @@ public class UserService {
     }
 
     public void delete(User user) {
+
         userRepository.delete(user);
     }
 

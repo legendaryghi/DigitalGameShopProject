@@ -21,10 +21,12 @@ public class RoleService {
     }
 
     public Role findById(int id) {
+
         return roleRepository.findById(id).orElse(null);
     }
 
     public List<Role> findAll() {
+
         return roleRepository.findAll();
     }
 
@@ -34,10 +36,12 @@ public class RoleService {
     }
 
     public Role save(Role role) {
+
         return roleRepository.save(role);
     }
 
     public void delete(Role role) {
+
         roleRepository.delete(role);
     }
 
